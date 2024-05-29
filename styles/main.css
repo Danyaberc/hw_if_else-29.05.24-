@@ -1,0 +1,20 @@
+.hw{
+    background-color: rgba(46, 39, 39, 0.705);
+}
+
+.container{
+    background-color: rgba(42, 37, 37, 0.755);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:35px;
+}
+.main__form{
+    display: flex;
+    gap:20px;
+}
+input{
+    width:200px;
+    height:40px;
+    text-align: center;
+}
