@@ -1,30 +1,43 @@
 let elForm = document.querySelector('.main__form');
 let elMessage = document.querySelector('.message')
-let elCheckInp = document.querySelectorAll('.input')
 
-elForm.addEventListener('submit',(ev) =>{
+elForm.addEventListener('submit', (ev)=>{
     ev.preventDefault();
+    let value = ev.target;
+
+    let formData = new FormData(value);
     
-    let formData = new FormData(ev.target)
+    let formName = formData.get('user')
+    let formAge = formData.get('age')
+    let formTicket = formData.get('quantity')
+    console.log('formName:',formName)
+    console.log('formAge:',formAge)
+    console.log('formTicket:',formTicket)
 
-    let questName = formData.get('user').trim();
-    let ageTicket = formData.get('age').trim();
-    let quantityTicket = formData.get('quantity').trim()
+     let formArr = [
+        formName,
+        formAge,
+        formTicket
+    ]
 
-    let correctName = questName.length <= 2 ;
-    let correctAge = ageTicket <= 17 || ageTicket >= 100;
-    let correctTicket = quantityTicket <= 1;
+    console.log('formArr:', formArr)
 
-    if(ageTicket < 0 || quantityTicket < 0){
-        elMessage.innerHTML = 'Ти голова чи що? Як можна купити -1 білет,ти хворий чи що?'
-        return
-    }
+    let actualInfoArr = [];
 
-    if(correctName !== '' && !correctName  && correctAge !== '' && !correctAge  && correctTicket !== "" && !correctTicket){
-        elMessage.innerHTML = 'CORRECT INFO';
-    }else{
-        elMessage.innerHTML = 'ERROR'
-    }
+    let newArr = formArr.forEach(input =>{
+
+        if(input === "" || input <=0){
+            elMessage.innerHTML = '';
+            return
+        }
+
+        actualInfoArr.push(input)
+        console.log('INFO PUSH IN ARR')
+
+        elMessage.innerHTML = `Ваше ім'я ${actualInfoArr[0]} Ваш вік ${actualInfoArr[1]} К-ть білетів ${actualInfoArr[2]}`
+     
+        
+    })
+    console.log('newinfo on actualinfo:', actualInfoArr)
 })
-
 
