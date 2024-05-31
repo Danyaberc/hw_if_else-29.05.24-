@@ -26,13 +26,18 @@ elForm.addEventListener('submit', (ev)=>{
 
     let newArr = formArr.forEach(input =>{
 
-        if(input === "" || input <=0){
-            elMessage.innerHTML = '';
+        if(input === "" || input <= 0){
+            elMessage.innerHTML = 'Заповніть всі поля корректно';
             return
         }
 
         actualInfoArr.push(input)
         console.log('INFO PUSH IN ARR')
+
+        if(actualInfoArr.length < 3 || actualInfoArr.length !== 3 ||actualInfoArr.length === 0){
+            elMessage.innerHTML = 'Заповніть всі поля корректно'
+            return
+        }
 
         elMessage.innerHTML = `Ваше ім'я ${actualInfoArr[0]} Ваш вік ${actualInfoArr[1]} К-ть білетів ${actualInfoArr[2]}`
      
